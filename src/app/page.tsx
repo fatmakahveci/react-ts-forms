@@ -1,6 +1,6 @@
 'use client';
 
-import AddUser from './components/Users/AddUser/AddUser';
+import AddUser from './components/Users/AddUser';
 import './globals.css';
 
 const Home = ({ }): JSX.Element => {

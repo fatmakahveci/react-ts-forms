@@ -1,32 +1,38 @@
 'use client';
 
-import { ChangeEvent, FC, FormEvent, useState } from 'react';
-import Button from '../../UI/Button/Button';
-import Card from '../../UI/Card/Card';
-
+import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import Button from '../UI/Button';
+import Card from '../UI/Card';
+import { User } from '@/shared/types/Types';
 import './AddUser.css';
 
-const AddUser: FC = (): JSX.Element => {
-    const [username, setUsername] = useState('');
-    const [age, setAge] = useState('');
+const INITIAL_USER: User = { username: undefined, age: undefined };
 
-    const addUserHandler: any = (e: FormEvent<HTMLFormElement>): void => {
+const AddUser: FC = (): JSX.Element => {
+    const [user, setUser] = useState<User> (INITIAL_USER);
+
+    const addUserHandler = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        if ( username.trim().length === 0 || age.trim().length === 0 || +age < 1) {
+        if (!user || !user.username || user.username.trim().length === 0 || !user.age || +user.age < 1) {
             return;
         }
-        setUsername('');
-        setAge('');
+        console.log(user.username, user.age);
+        setUser(INITIAL_USER);
     }
 
     const usernameChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
         e.preventDefault();
-        setUsername(e.target.value);
+        setUser({ ...user, username: e.target.value });
     };
 
     const ageChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
         e.preventDefault();
-        setAge(e.target.value);
+        if (isNaN(+e.target.value)) {
+            alert('Age must be a number');
+            return;
+        } else {
+            setUser({ ...user, age: +e.target.value });
+        }
     };
 
     return (
@@ -36,14 +42,14 @@ const AddUser: FC = (): JSX.Element => {
                 <input
                     id="username"
                     type="text"
-                    value={username}
+                    value={user.username || ''}
                     onChange={usernameChangeHandler}>
                 </input>
                 <label htmlFor="age">Age (Years)</label>
                 <input
                     id="age"
                     type="text"
-                    value={age}
+                    value={user.age !== undefined ? user.age.toString() : ''}
                     onChange={ageChangeHandler}>
                 </input>
                 <Button type="submit">Add User</Button>
