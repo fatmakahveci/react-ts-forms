@@ -1,14 +1,18 @@
 'use client';
 
-import React from "react";
+import { FC, ReactNode } from 'react';
 import './Card.css';
 
-const Card = (props: any) => {
+type Props = {
+  cssName: string;
+  children: ReactNode;
+};
+
+const Card: FC<Props> = ({ cssName, children }) => {
   return (
-    <div className={`card ${props.cssName}`}>
-        {props.children}
+    <div className={`card ${cssName}`}>
+        {children}
     </div>
   )
 }
-
 export default Card;
