@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import AddUser from './components/Users/AddUser/AddUser';
 import './globals.css';
@@ -10,5 +10,4 @@ const Home = ({ }): JSX.Element => {
     </div>
   )
 }
-
 export default Home;
