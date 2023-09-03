@@ -1,13 +1,13 @@
 'use client';
 
 import { INITIAL_USER } from '@/shared/types/Constants';
-import { User } from '@/shared/types/Types';
+import { AddUsersProps, User } from '@/shared/types/Types';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
 import './AddUser.css';
 
-const AddUser: FC = (): JSX.Element => {
+const AddUser: FC<AddUsersProps> = ({ onAddUser }): JSX.Element => {
     const [user, setUser] = useState<User> (INITIAL_USER);
 
     const addUserHandler = (e: FormEvent<HTMLFormElement>): void => {
@@ -15,7 +15,7 @@ const AddUser: FC = (): JSX.Element => {
         if (!user || !user.username || user.username.trim().length === 0 || !user.age || +user.age < 1) {
             return;
         }
-        console.log(user.username, user.age);
+        onAddUser(user.username, user.age);
         setUser(INITIAL_USER);
     }
 
