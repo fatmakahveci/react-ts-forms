@@ -3,6 +3,7 @@
 import { UsersListProps } from '@/shared/types/Types';
 import { FC } from 'react';
 import Card from '../UI/Card';
+import './UsersList.css';
 
 const UsersList: FC<UsersListProps> = ({users}) => {
   return (
