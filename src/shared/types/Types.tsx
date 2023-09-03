@@ -5,6 +5,10 @@ export type ButtonProps = {
     children: ReactNode;
 };
 
+export type UsersListProps = {
+    users: User[];
+};
+
 export type User = {
     username: string | undefined;
     age: number | undefined;
