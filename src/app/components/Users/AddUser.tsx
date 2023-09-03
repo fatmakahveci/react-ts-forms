@@ -1,12 +1,11 @@
 'use client';
 
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import { INITIAL_USER } from '@/shared/types/Constants';
+import { User } from '@/shared/types/Types';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
-import { User } from '@/shared/types/Types';
 import './AddUser.css';
-
-const INITIAL_USER: User = { username: undefined, age: undefined };
 
 const AddUser: FC = (): JSX.Element => {
     const [user, setUser] = useState<User> (INITIAL_USER);
