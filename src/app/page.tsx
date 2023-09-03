@@ -2,8 +2,8 @@
 
 import { User } from '@/shared/types/Types';
 import { useState } from 'react';
-import AddUser from './components/Users/AddUser';
-import UsersList from './components/Users/UsersList';
+import AddUser from '@/app/components/Users/AddUser';
+import UsersList from '@/app/components/Users/UsersList';
 import './globals.css';
 
 const Home = ({ }): JSX.Element => {

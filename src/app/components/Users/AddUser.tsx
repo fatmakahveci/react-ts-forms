@@ -3,9 +3,10 @@
 import { INITIAL_USER } from '@/shared/types/Constants';
 import { AddUsersProps, ErrorMessage, User } from '@/shared/types/Types';
 import { ChangeEvent, FC, FormEvent, MouseEvent, useState } from 'react';
-import Button from '../UI/Button';
-import Card from '../UI/Card';
-import ErrorModal from '../UI/ErrorModal';
+import Wrapper from '@/app/components/Helpers/Wrapper';
+import Button from '@/app/components/UI/Button';
+import Card from '@/app/components/UI/Card';
+import ErrorModal from '@/app/components/UI/ErrorModal';
 import './AddUser.css';
 
 const AddUser: FC<AddUsersProps> = ({ onAddUser }): JSX.Element => {
@@ -53,7 +54,7 @@ const AddUser: FC<AddUsersProps> = ({ onAddUser }): JSX.Element => {
     };
 
     return (
-        <div>
+        <Wrapper>
             {errorMessage && <ErrorModal errorMessage={errorMessage} onConfirm={errorHandler}/>}
             <Card cssName="input">
                 <form onSubmit={addUserHandler}>
@@ -74,7 +75,7 @@ const AddUser: FC<AddUsersProps> = ({ onAddUser }): JSX.Element => {
                     <Button type="submit">Add User</Button>
                 </form>
             </Card>
-        </div>
+        </Wrapper>
     )
 }
 export default AddUser;

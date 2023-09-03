@@ -14,18 +14,22 @@ export type AddUsersProps = {
     onAddUser: any;
 };
 
-export type ErrorMessage = {
-    title: string;
-    message: string;
-};
-
 export type ErrorModalProps = {
     errorMessage: ErrorMessage;
     onConfirm: any;
+};
+
+export type WrapperProps = {
+    children: ReactNode;
 };
 
 export type User = {
     username: string | undefined;
     age: number | undefined;
     id?: string;
+};
+
+export type ErrorMessage = {
+    title: string;
+    message: string;
 };
