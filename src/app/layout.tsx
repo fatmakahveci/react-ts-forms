@@ -8,7 +8,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="{body}">{children}</body>
+      <body className="{body}">
+      <div id="backdrop-root"></div>
+      <div id="overlay-root"></div>
+      {children}</body>
     </html>
   )
 }

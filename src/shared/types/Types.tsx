@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 export type ButtonProps = {
     type: 'submit' | 'reset' | 'button' | undefined;
     children: ReactNode;
-    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 export type UsersListProps = {
@@ -16,12 +16,21 @@ export type AddUsersProps = {
 
 export type ErrorModalProps = {
     errorMessage: ErrorMessage;
-    onConfirm: any;
+    onConfirm: () => void;
+};
+
+export type BackdropProps = {
+    onConfirm: () => void;
 };
 
 export type WrapperProps = {
     children: ReactNode;
 };
+
+export type CardProps = {
+    cssName: string;
+    children: ReactNode;
+  };
 
 export type User = {
     username: string | undefined;

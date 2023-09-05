@@ -1,27 +1,44 @@
 'use client';
 
-import { ErrorMessage, ErrorModalProps } from '@/shared/types/Types';
+import { BackdropProps, ErrorModalProps } from '@/shared/types/Types';
 import { FC } from 'react';
+import ReactDOM, { createPortal } from 'react-dom';
 import Button from './Button';
 import Card from './Card';
+import './ErrorModal.css';
+
+const Backdrop: FC<BackdropProps> = ({ onConfirm }) => {
+  return <div className="backdrop" onClick={onConfirm} />;
+};
+
+const ModalOverlay: FC<ErrorModalProps> = ({ errorMessage, onConfirm }) => {
+  return (
+    <Card cssName="modal">
+      <header className="header">
+        <h2>{errorMessage.title}</h2>
+      </header>
+      <div className="content">
+        <p>{errorMessage.message}</p>
+      </div>
+      <footer className="actions">
+        <Button type="button" onClick={onConfirm}>Okay</Button>
+      </footer>
+    </Card>
+  )
+};
 
 const ErrorModal: FC<ErrorModalProps> = ({ errorMessage, onConfirm }) => {
   return (
-    <div>
-      <div className="backdrop" onClick={onConfirm}>
-        <Card cssName="modal">
-          <header className="header">
-            <h2>{errorMessage.title}</h2>
-          </header>
-          <div className="content">
-            <p>{errorMessage.message}</p>
-          </div>
-          <footer className="actions">
-            <Button type="submit">Okay</Button>
-          </footer>
-        </Card>
-      </div>
-    </div>
+    <>
+      {
+        createPortal(<Backdrop onConfirm={onConfirm}/>,
+        document.getElementById('backdrop-root') as HTMLElement)
+      }
+      {
+        createPortal(<ModalOverlay errorMessage={errorMessage} onConfirm={onConfirm} />,
+        document.getElementById('overlay-root') as HTMLElement)
+      }
+    </>
   )
 }
 export default ErrorModal;

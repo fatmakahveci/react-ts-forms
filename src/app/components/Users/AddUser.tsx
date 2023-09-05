@@ -48,8 +48,7 @@ const AddUser: FC<AddUsersProps> = ({ onAddUser }): JSX.Element => {
         }
     };
 
-    const errorHandler = (e: any) => {
-        e.preventDefault();
+    const errorHandler = () => {
         setErrorMessage(null);
     };
 
