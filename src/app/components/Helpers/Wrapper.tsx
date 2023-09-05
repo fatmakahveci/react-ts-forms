@@ -1,7 +1,7 @@
 'use client';
 
-import { FC } from 'react';
 import { WrapperProps } from '@/shared/types/Types';
+import { FC } from 'react';
 
 const Wrapper: FC<WrapperProps> = ({ children}) => {
     return children;

@@ -1,8 +1,8 @@
 'use client';
 
+import Card from '@/app/components/UI/Card';
 import { UsersListProps } from '@/shared/types/Types';
 import { FC } from 'react';
-import Card from '@/app/components/UI/Card';
 import './UsersList.css';
 
 const UsersList: FC<UsersListProps> = ({users}) => {

@@ -1,9 +1,9 @@
 'use client';
 
-import { User } from '@/shared/types/Types';
-import { useState } from 'react';
 import AddUser from '@/app/components/Users/AddUser';
 import UsersList from '@/app/components/Users/UsersList';
+import { User } from '@/shared/types/Types';
+import { useState } from 'react';
 import './globals.css';
 
 const Home = ({ }): JSX.Element => {
