@@ -2,7 +2,7 @@
 
 import { INITIAL_USER } from '@/shared/types/Constants';
 import { AddUsersProps, ErrorMessage, User } from '@/shared/types/Types';
-import { ChangeEvent, FC, FormEvent, MouseEvent, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import Wrapper from '@/app/components/Helpers/Wrapper';
 import Button from '@/app/components/UI/Button';
 import Card from '@/app/components/UI/Card';
