@@ -1,12 +1,9 @@
 "use client";
 
-import './globals.css';
+import "./globals.css";
 
-const Home = ({ }): JSX.Element => {
-  return (
-    <div>
-    </div>
-  )
-}
+const Home = (): JSX.Element => {
+  return <div className="app">{/* <SimpleInput /> */}</div>;
+};
 
 export default Home;
