@@ -18,6 +18,8 @@ where applicable.
 
 ### Changed
 
+- Centralized shared styles and icons in `packages/ui` and removed unused CSS.
+
 - Organized independent applications under `apps/form-validation` and `apps/user-management`.
 - Replaced blocking error dialogs with inline errors and first-invalid-field focus.
 - Strengthened input-state typing and email validation.
