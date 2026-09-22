@@ -1,4 +1,4 @@
-import Icon from "@/components/ui/Icon";
+import Icon from "@form-studio/ui/icon";
 import type { User } from "@/shared/types";
 export default function UserList({
   users,

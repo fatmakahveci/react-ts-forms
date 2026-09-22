@@ -1,5 +1,5 @@
 "use client";
-import Icon from "@/components/ui/Icon";
+import Icon from "@form-studio/ui/icon";
 import { useRef, useState, useSyncExternalStore } from "react";
 import AddUserForm from "@/components/users/AddUserForm";
 import UserList from "@/components/users/UserList";

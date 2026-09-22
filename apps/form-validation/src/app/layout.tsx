@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import "./globals.css";
+import "@form-studio/ui/styles.css";
 export const metadata: Metadata = {
   title: "Form validation | Form Studio",
   description: "Thoughtful, accessible forms built with React and TypeScript.",

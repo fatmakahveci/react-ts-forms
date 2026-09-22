@@ -1,4 +1,4 @@
-import Icon from "@/components/ui/Icon";
+import Icon from "@form-studio/ui/icon";
 import ValidationForm from "@/components/forms/ValidationForm";
 export default function Home() {
   return (
