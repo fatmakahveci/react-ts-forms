@@ -1,68 +1,109 @@
-# React TypeScript Form Examples
+# Form Studio
 
-[![Next.js](https://img.shields.io/badge/Next.js-React-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Examples](https://img.shields.io/badge/Examples-2-4F46E5)](https://github.com/fatmakahveci/react-ts-forms)
-[![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE.md)
+Two focused React and TypeScript applications for accessible form validation and a personal people directory. Run both with Docker or develop each independently with Next.js.
 
-A collection of two independent Next.js projects exploring typed form state, validation, reusable inputs, and list updates.
+![Form Studio: validation and people directory walkthrough](demo.gif)
 
-## Demo
+## Applications
 
-![Demo showing form validation, error feedback, and adding users to the list](demo.gif)
+| Application      | Features                                                                                      | Docker URL            |
+| ---------------- | --------------------------------------------------------------------------------------------- | --------------------- |
+| Form validation  | Name and email checks, inline errors, first-error focus, progress, reset and success feedback | http://localhost:3000 |
+| People directory | Add, edit, search, sort, delete and undo; browser storage; duplicate-name protection          | http://localhost:3001 |
 
-## Highlights
+Both interfaces support small screens, keyboard navigation, visible focus, labeled inputs and status announcements. They use system fonts and do not request external font services.
 
-- `user-input`: reusable input hook with validation and form-state feedback
-- `user-list-forms`: add validated users and render an in-memory user list
-- TypeScript models shared across components
-- Independent development and production builds for each example
+## Run with Docker
 
-## Technology
-
-- Next.js
-- React
-- TypeScript
-- Formik
-- Yup
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 20 or newer
-- npm
-
-### Installation
+Start Docker Desktop, or Docker Engine with Compose v2, then run from the repository root:
 
 ```bash
-cd user-input
-npm install
-npm run dev
-
-# Or run the user-list example
-cd ../user-list-forms
-npm install
-npm run dev
+docker compose up --build -d --wait
 ```
 
-Each example runs independently on http://localhost:3000. Stop the first development server before starting the other on the same port.
-
-## Quality Checks
+The two production containers run as non-root users with health checks. Host ports are bound to localhost. No local Node.js installation is needed.
 
 ```bash
-cd user-input && npm run lint && npm run build
-cd user-list-forms && npm run lint && npm run build
+# Optional host ports
+FORM_VALIDATION_PORT=3100 USER_MANAGEMENT_PORT=3101 docker compose up --build -d --wait
+
+# Start only one application
+docker compose up --build -d --wait form-validation
+
+# Inspect or stop the applications
+docker compose ps
+docker compose logs -f
+docker compose down
 ```
 
-## Repository Structure
+Rebuild after code changes. Docker runs production builds; use the development servers for hot reload.
 
-- `user-input` — reusable input-hook example
-- `user-list-forms` — user creation and list example
+## Local development
 
-## Project Resources
+Use Node.js 22.12+ (Node.js 22) and npm. From the repository root:
+
+```bash
+npm ci
+npm ci --prefix apps/form-validation
+npm ci --prefix apps/user-management
+
+# Terminal 1
+npm --prefix apps/form-validation run dev -- --port 3000
+
+# Terminal 2
+npm --prefix apps/user-management run dev -- --port 3001
+```
+
+Stop the Docker containers first if they are using these ports.
+
+## Quality checks
+
+Run from the repository root after installing all three sets of dependencies:
+
+```bash
+npm run format:check
+npm test
+npm run lint
+npm run typecheck
+npm run build
+```
+
+Behavior tests cover field validation, reset, duplicate names, editing, search, sorting, persistence, delete/undo, malformed saved data and storage failures. CI runs tests, lint, type checking and both production builds.
+
+## Data and validation
+
+- The validation form accepts names of 2–60 characters and an email with a domain. Successful submissions only show a confirmation; no data is transmitted or stored.
+- The directory accepts names of 2–60 characters and whole-number ages from 12 to 120. Names must be unique ignoring case and surrounding spaces.
+- Up to 1,000 people can be saved to `localStorage` under `form-studio.users.v1`. Records survive page reloads in the same browser and origin. Different ports have separate storage.
+- There is no backend, authentication, cross-device sync or automatic cross-tab synchronization. Use synthetic data for this demo. The directory is not intended for sensitive personal records.
+- Storage failures are shown in the interface. Invalid saved data is preserved, and the current visit works in memory. Removing the storage key through browser site-data settings resets the directory.
+- Undo restores the most recently deleted person. A successful add or edit replaces that undo opportunity.
+
+Client-side checks improve usability; applications that add a backend must also validate input and enforce authorization on the server.
+
+## Project structure
+
+```text
+apps/
+  form-validation/
+    src/app/                 Next.js routes and global styles
+    src/components/forms/    Validation form
+    src/hooks/               Typed input-state hook
+    src/shared/              Shared types
+  user-management/
+    src/app/                 Directory page and global styles
+    src/components/users/    Person form and list
+    src/shared/              Types, validation and storage parsing
+tests/                       Behavioral regression tests
+Dockerfile                   Shared multi-stage production build
+compose.yaml                 Both applications and local ports
+```
+
+Directories use lowercase kebab-case. React components use PascalCase filenames; non-JSX files use `.ts`. Next.js convention files retain names such as `page.tsx` and `layout.tsx`.
+
+## Project resources
 
 - [Changelog](CHANGELOG.md)
 - [Contributing guide](.github/CONTRIBUTING.md)
 - [Security policy](.github/SECURITY.md)
-- [License](LICENSE.md)
+- [Apache 2.0 license](LICENSE.md)
