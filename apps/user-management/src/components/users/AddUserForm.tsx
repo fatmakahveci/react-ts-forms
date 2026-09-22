@@ -1,7 +1,7 @@
 "use client";
 import { useState, type FormEvent } from "react";
 import type { AddUserFormProps } from "@/shared/types";
-import Icon from "@/components/ui/Icon";
+import Icon from "@form-studio/ui/icon";
 import { validateUser } from "@/shared/users";
 export default function AddUserForm({
   onAddUser,

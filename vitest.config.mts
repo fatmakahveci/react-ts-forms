@@ -5,6 +5,9 @@ export default defineConfig({
   oxc: { jsx: { runtime: "automatic" } },
   resolve: {
     alias: {
+      "@form-studio/ui/icon": fileURLToPath(
+        new URL("./packages/ui/Icon.tsx", import.meta.url),
+      ),
       react: fileURLToPath(new URL("./node_modules/react", import.meta.url)),
       "react-dom": fileURLToPath(
         new URL("./node_modules/react-dom", import.meta.url),

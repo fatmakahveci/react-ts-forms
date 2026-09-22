@@ -56,6 +56,18 @@ npm --prefix apps/user-management run dev -- --port 3001
 
 Stop the Docker containers first if they are using these ports.
 
+Both apps consume `packages/ui` as the local `@form-studio/ui` package.
+Their `.npmrc` files install a package copy so each production build remains
+self-contained. After editing shared styles or icons, refresh both copies:
+
+```bash
+npm ci --prefix apps/form-validation
+npm ci --prefix apps/user-management
+```
+
+Restart the development servers after refreshing the package. Docker builds
+copy the current shared package automatically.
+
 ## Quality checks
 
 Run from the repository root after installing all three sets of dependencies:
@@ -86,7 +98,7 @@ Client-side checks improve usability; applications that add a backend must also 
 ```text
 apps/
   form-validation/
-    src/app/                 Next.js routes and global styles
+    src/app/                 Next.js routes
     src/components/forms/    Validation form
     src/hooks/               Typed input-state hook
     src/shared/              Shared types
@@ -94,6 +106,7 @@ apps/
     src/app/                 Directory page and global styles
     src/components/users/    Person form and list
     src/shared/              Types, validation and storage parsing
+packages/ui/                 Shared styles and icon component
 tests/                       Behavioral regression tests
 Dockerfile                   Shared multi-stage production build
 compose.yaml                 Both applications and local ports
