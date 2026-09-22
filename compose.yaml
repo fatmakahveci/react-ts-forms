@@ -1,0 +1,18 @@
+services:
+  form-validation:
+    build:
+      context: .
+      args:
+        APP: apps/form-validation
+    ports:
+      - "127.0.0.1:${FORM_VALIDATION_PORT:-3000}:3000"
+    init: true
+
+  user-management:
+    build:
+      context: .
+      args:
+        APP: apps/user-management
+    ports:
+      - "127.0.0.1:${USER_MANAGEMENT_PORT:-3001}:3000"
+    init: true
