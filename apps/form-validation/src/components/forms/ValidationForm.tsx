@@ -1,6 +1,6 @@
 "use client";
 import { useState, type FormEvent } from "react";
-import Icon from "@/components/ui/Icon";
+import Icon from "@form-studio/ui/icon";
 import useInput from "@/hooks/use-input";
 const validName = (value: string) =>
   value.trim().length >= 2 && value.trim().length <= 60;

@@ -1,0 +1,16 @@
+{
+  "name": "@form-studio/ui",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./icon": "./Icon.tsx",
+    "./styles.css": "./styles.css"
+  },
+  "files": [
+    "Icon.tsx",
+    "styles.css"
+  ],
+  "peerDependencies": {
+    "react": "^18.3.1"
+  }
+}

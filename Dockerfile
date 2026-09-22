@@ -1,7 +1,8 @@
 FROM node:22-bookworm-slim AS dependencies
-WORKDIR /app
+WORKDIR /workspace/apps/web
 ARG APP=apps/form-validation
-COPY ${APP}/package.json ${APP}/package-lock.json ./
+COPY packages/ui /workspace/packages/ui
+COPY ${APP}/package.json ${APP}/package-lock.json ${APP}/.npmrc ./
 RUN npm ci --no-audit --no-fund
 
 FROM dependencies AS builder
@@ -15,9 +16,9 @@ ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
     HOSTNAME=0.0.0.0 \
     PORT=3000
-COPY --from=builder --chown=node:node /app/.next/standalone ./
-COPY --from=builder --chown=node:node /app/.next/static ./.next/static
-COPY --from=builder --chown=node:node /app/public ./public
+COPY --from=builder --chown=node:node /workspace/apps/web/.next/standalone ./
+COPY --from=builder --chown=node:node /workspace/apps/web/.next/static ./.next/static
+COPY --from=builder --chown=node:node /workspace/apps/web/public ./public
 USER node
 EXPOSE 3000
 HEALTHCHECK --interval=10s --timeout=5s --start-period=20s --retries=3 \

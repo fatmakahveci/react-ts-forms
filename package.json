@@ -5,7 +5,7 @@
     "test": "vitest run",
     "build": "npm --prefix apps/form-validation run build && npm --prefix apps/user-management run build",
     "typecheck": "npm --prefix apps/form-validation run typecheck && npm --prefix apps/user-management run typecheck",
-    "lint": "npm --prefix apps/form-validation run lint && npm --prefix apps/user-management run lint",
+    "lint": "npm --prefix apps/form-validation run lint && npm --prefix apps/user-management run lint && node apps/form-validation/node_modules/eslint/bin/eslint.js --config apps/form-validation/eslint.config.mjs packages/ui",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
