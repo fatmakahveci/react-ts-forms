@@ -7,6 +7,10 @@
 
 A collection of two independent Next.js projects exploring typed form state, validation, reusable inputs, and list updates.
 
+## Demo
+
+![Demo showing form validation, error feedback, and adding users to the list](demo.gif)
+
 ## Highlights
 
 - `user-input`: reusable input hook with validation and form-state feedback
