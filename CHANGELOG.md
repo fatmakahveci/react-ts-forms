@@ -8,6 +8,12 @@ where applicable.
 
 ## [Unreleased]
 
+### Security
+
+- Updated both applications to Next.js and eslint-config-next 16.3.6, sharp
+  0.35.4, and js-yaml 4.3.2 to address the eight reported dependency alerts.
+- Enabled weekly npm dependency updates for the root project and both apps.
+
 ### Added
 
 - Responsive Form Studio interfaces with accessible field errors and status feedback.
